@@ -3,11 +3,13 @@
 <head>
   <title>Dashio</title>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script type="text/javascript" src="node_modules/angular/angular.js"></script>
-  <script type="text/javascript" src="controllers/controller.js"></script>
+<!--   <script type="text/javascript" src="node_modules/angular/angular.js"></script> -->
+  <script type="text/javascript" src="scripts/app.js"></script>
 </head>
 <body>
   <h1>Testing</h1>
-  <div ng-controller="dashioCtrl"></div>
+  <div ng-controller="dashioCtrl">
+    <current-weather city="San Francisco"></current-weather>
+  </div>
 </body>
 </html>
