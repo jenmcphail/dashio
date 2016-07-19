@@ -3,15 +3,24 @@
 <head>
   <title>Dashio</title>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<!--   <script type="text/javascript" src="node_modules/angular/angular.js"></script> -->
-  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/controller.js"></script>
 </head>
 <body>
   <h1>Welcome to Dashio</h1>
   <div ng-controller="dashioCtrl">
-    <quote></quote>
 
-    <current-weather city="San Francisco"></current-weather>
+    <div ng-controller="QuoteCtlr">
+      <h1>Quote: {{quote.quote}}</h1>
+      <h4>Author: {{quote.author}}</h4>
+    </div>
+
+    <div ng-controller="TrafficCtrl">
+    </div>
+
+     <!-- <div ng-controller="WeatherCtrl">
+      <h1>City: {{city}}</h1>
+      <h4>Temp: {{weather.main.temp}}</h4>
+    </div> -->
 
   </div>
 </body>
