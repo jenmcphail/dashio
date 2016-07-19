@@ -2,32 +2,98 @@
 <html ng-app="dashioApp">
 <head>
   <title>Dashio</title>
+  <!-- Requires Angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <!-- Requires Controller -->
   <script type="text/javascript" src="scripts/controller.js"></script>
+   <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </head>
 <body>
-  <!-- nav bar with Sign in and log out form -->
-  <h1>Welcome to Dashio</h1>
+  <ul id="dropdown1" class="dropdown-content">
+  <form>
+    <input type="text" placeholder="email" name="email">
+    <input type="text" placeholder="password" name="password">
+  </form>
+</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+<h2>Hello, Jen!</h2>
+
   <div ng-controller="dashioCtrl">
+    <hr>
 
     <div ng-controller="QuoteCtrl">
-      <h1>Quote: {{quote.quote}}</h1>
-      <h4>Author: {{quote.author}}</h4>
+      <h5>"{{quote.quote}}Quote goes here"</h5>
+      <p>- Author {{quote.author}}</p>
     </div>
+
+    <hr>
 
     <div ng-controller="TrafficCtrl">
+      <p>Distance from <b>{{duration.destination_addresses[0]}}</b> to <b>{{duration.origin_addresses[0]}}</b>:
+      <p><h5>{{duration.rows[0].elements[0].duration.text}}</h5></p>
     </div>
 
-    <!--  <current-weather city="San Francisco"> -->
+    <hr>
+
      <div ng-controller="WeatherCtrl">
-      <h1>City: {{city}}</h1>
-      <h4>Temp: {{weather.main.temp}}</h4>
+      <h4>Weather for {{weather.name}}:</h4>
+      <p>{{weather.weather[0].icon}}</p>
+      <p>{{weather.main.temp}} degrees F</p>
+      <p>{{weather.weather[0].description}}</p>
     </div>
-<!--     </current-weather> -->
 
-    <div>
-      Current date and time.
+    <hr>
+    
+    <h4>News</h4>
+    <div ng-controller="NewsCtrl">
+      <div>
+        <img ng-src="{{news.articles[0].urlToImage}}">
+        <a ng-href="{{news.articles[0].url}}"><p>{{news.articles[0].title}}</p></a>
+        <p>{{news.articles[0].description}}</p>
+      </div>
+      <div>
+        <img ng-src="{{news.articles[2].urlToImage}}">
+        <a ng-href="{{news.articles[2].url}}"><p>{{news.articles[2].title}}</p></a>
+        <p>{{news.articles[2].description}}</p>
+      </div>
+      <div>
+        <img ng-src="{{news.articles[3].urlToImage}}">
+        <a ng-href="{{news.articles[3].url}}"><p>{{news.articles[3].title}}</p></a>
+        <p>{{news.articles[3].description}}</p>
+      </div>
+      <div>
+        <img ng-src="{{news.articles[4].urlToImage}}">
+        <a ng-href="{{news.articles[4].url}}"><p>{{news.articles[4].title}}</p></a>
+        <p>{{news.articles[4].description}}</p>
+      </div>
+      <div>
+        <img ng-src="{{news.articles[5].urlToImage}}">
+        <a ng-href="{{news.articles[5].url}}"><p>{{news.articles[5].title}}</p></a>
+        <p>{{news.articles[5].description}}</p>
+      </div>
     </div>
+
+    <hr>
+
+    <div ng-controller="TimeCtrl">
+      <p>{{ clock  | date:'medium'}}</p>
+    </div>
+
+     <hr>
 
     <form method=POST>
       <input type="textarea" name="" placeholder="NOTES">
@@ -36,5 +102,11 @@
   
 
   </div>
+
+  <script type="text/javascript">
+    $( document ).ready(function){
+      $(".dropdown-button").dropdown();
+    }
+  </script>
 </body>
 </html>

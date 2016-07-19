@@ -15,6 +15,8 @@ dashioApp.controller("dashioCtrl", function(){
 dashioApp.controller('QuoteCtrl', QuoteCtrl);
 dashioApp.controller('WeatherCtrl', WeatherCtrl)
 dashioApp.controller('TrafficCtrl', TrafficCtrl);
+dashioApp.controller('NewsCtrl', NewsCtrl);
+dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
 
@@ -28,46 +30,42 @@ dashioApp.controller('TrafficCtrl', TrafficCtrl);
 
   
   function WeatherCtrl ($scope, $http){
-    console.log("it works")
-    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&appid=3ad9bfcab1c3432e7973037740b23572")
+    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&units=imperial&appid=3ad9bfcab1c3432e7973037740b23572")
           .success(function(response){
               console.log(response)
-              // $scope.weather = response;
+              $scope.weather = response;
           });
   };
 
 
   function TrafficCtrl ($scope, $http){
-    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAN5Gz5suaXSGUFnF5tOWGRrRKKR1Pq8xE")
+    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAN5Gz5suaXSGUFnF5tOWGRrRKKR1Pq8xE", {headers: {Authorization: undefined}})
           .success(function(response){
               console.log(response)
-              // $scope.duration = response.rows.elements.duration.text;
+              $scope.duration = response
           });
   };
 
+  function NewsCtrl ($scope, $http){
+    $http.get("https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=ef4c0de3c37e4e9ca711527bd7646dca")
+          .success(function(response){
+              console.log(response)
+              $scope.news = response;
+          });
+  };
+
+  function TimeCtrl($scope, $timeout) {
+    $scope.clock = "loading clock..."; // initialise the time variable
+    $scope.tickInterval = 1000 //ms
+
+    var tick = function() {
+        $scope.clock = Date.now() // get the current time
+        $timeout(tick, $scope.tickInterval); // reset the timer
+    }
+
+    // Start the timer
+    $timeout(tick, $scope.tickInterval);
+};
+
   
-
-//   dashioApp.directive('currentWeather', function() {
-//   return {
-//     restrict: 'E',
-//     scope: {
-//       city: '@'
-//     },
-//     template: '<div class="current-weather"><h1>Weather for {{city}}</h4>{{weather.main.temp}}</div>',
-//     controller: ['$scope', '$http', function($scope, $http){
-//                 var url="http://api.openweathermap.org/data/2.5/weather?mode=json&cnt=7&units=imperial&callback=JSON_CALLBACK&q=";
-//                 var apikey = "&appid=3ad9bfcab1c3432e7973037740b23572"
-//                 $scope.getWeather = function(city){
-//                     $http({method: 'JSONP', url: url + city + apikey})
-//                         .success(function(data){
-//                             $scope.weather = data;
-//                         });
-//                 }
-//             }],
-//     link: function (scope, element, attrs) {
-//       scope.weather = scope.getWeather(attrs.city);
-//     }
-//   }
-// });
-
 
