@@ -64,8 +64,6 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
         $scope.clock = Date.now() // get the current time
         $timeout(tick, $scope.tickInterval); // reset the timer
     }
-
-    // Start the timer
     $timeout(tick, $scope.tickInterval);
 };
 
