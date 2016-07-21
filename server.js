@@ -18,7 +18,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({extended:true})); // get information from html forms
 
-app.use('/static', express.static('./public'));
+app.use(express.static('./public'));
 
 // required for passport
 require('./config/passport')(passport); // pass passport for configuration

@@ -48,12 +48,19 @@ function isLoggedIn(req, res, next) {
         failureRedirect : '/signup',
         failureFlash : true 
     }, function(err, user) {
-    res.redirect('/profile' + req.user);
+        console.log(" err ", err, " user ", user);
+        if(err){
+            console.log('there was an error: ', err); // returns null
+        } else if (user === false) {
+            console.log("User already exists. Please try another email");
+        } else {
+            res.redirect('/profile' + req.user);
+        }
     }));
 
 // ***Gets the profile page only if user is logged in***
     app.get('/profile', isLoggedIn, function(req, res) {
-        console.log("at profile")
+        console.log("at profile");
         // res.sendFile('profile.html', { root: __dirname + '/views'}, {
         //     user : req.user // get the user out of session and pass to template
         // });

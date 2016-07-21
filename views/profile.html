@@ -5,204 +5,128 @@
   <!-- Requires Angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <!-- Requires Controller -->
-<!--   <script type="text/javascript" src="../../public/scripts/controller.js"></script> -->
-<script type="text/javascript" src="../hello.js"></script>
-   <!-- Materialize CSS -->
+  <script type="text/javascript" src="scripts/controller.js"></script>
+   <!-- CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="./public/scripts/styles">
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://use.fontawesome.com/9a3b7c80b7.js"></script>
   <!-- Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
-<!-- <ng-include src="'/partials/navbar.html'"></ng-include> -->
 <body ng-app="dashioApp">
-  <ul id="dropdown1" class="dropdown-content">
-  <form>
-    <input type="text" placeholder="email" name="email">
-    <input type="text" placeholder="password" name="password">
-  </form>
-</ul>
+<nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Dashio</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 
+<div class="container" ng-controller="dashioCtrl">
+<h2 class="header">Hello, {{ firstName }} !</h2>
 
-<h2 class="header">Hello, Jen!</h2>
+<hr>
 
-  <div ng-controller="dashioCtrl" class="container">
+  <div ng-controller="TimeCtrl">
+    <p class="clock">{{ clock  | date:'medium'}}</p>
+  </div>
+
+  <div>
     <hr>
 
-    <div ng-controller="QuoteCtrl">
+<!--     <div ng-controller="QuoteCtrl">
       <h5 class="quote">"{{quote.quote}}"</h5>
       <p class="author">- {{quote.author}}</p>
+    </div> -->
+
+    <div>
+    Style the Quote
+    Style the Author
     </div>
 
+    <div class="row">
+        <div class="col l6 s12">
+          <div class="card weather">
+            <div class="card-image">
+              <i class="fa fa-sun-o fa-5x" aria-hidden="true"></i>
+            </div>
+            <div ng-controller="WeatherCtrl" class="card-content">
+              <h4>Weather for {{weather.name}}:</h4>
+              <p>{{weather.main.temp}} degrees F</p>
+              <p>{{weather.weather[0].description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="card traffic">
+            <div class="card-image">
+              <i class="fa fa-car fa-5x" aria-hidden="true"></i>
+            </div>
+            <div ng-controller="TrafficCtrl" class="card-content">
+              <h4>Traffic</h4>
+              <p>From <b>{{duration.destination_addresses[0]}}</b> to <b>{{duration.origin_addresses[0]}}</b>:
+              <p><h5>{{duration.rows[0].elements[0].duration.text}}</h5></p>
+            </div>
+          </div>
+      </div>
+    <div class="col l12 s12 newsHeader">
     <hr>
 
-    <div ng-controller="TrafficCtrl">
-      <p>Distance from <b>{{duration.destination_addresses[0]}}</b> to <b>{{duration.origin_addresses[0]}}</b>:
-      <p><h5>{{duration.rows[0].elements[0].duration.text}}</h5></p>
-    </div>
-
-    <hr>
-
-     <div ng-controller="WeatherCtrl">
-      <h4>Weather for {{weather.name}}:</h4>
-      <p>{{weather.weather[0].icon}}</p>
-      <p>{{weather.main.temp}} degrees F</p>
-      <p>{{weather.weather[0].description}}</p>
-    </div>
-
-    <hr>
     <h4>News</h4>
-    <div ng-controller="NewsCtrl" class="slider">
+    </div>
+    <div ng-controller="NewsCtrl" class="slider" id="newsctrl">
     <ul class="slides">
       <li>
         <img ng-src="{{news.articles[0].urlToImage}}">
         <div class="caption center-align">
-          <a ng-href="{{news.articles[0].url}}"><h3>{{news.articles[0].title}}</h3></a>
+          <a ng-href="{{news.articles[0].url}}"><h3 class="desc">{{news.articles[0].title}}</h3></a>
           <h5 class="light grey-text text-lighten-3">{{news.articles[0].description}}</h5>
         </div>
       </li>
       <li>
         <img ng-src="{{news.articles[2].urlToImage}}">
         <div class="caption center-align">
-          <a ng-href="{{news.articles[2].url}}"><h3>{{news.articles[2].title}}</h3></a>
+          <a ng-href="{{news.articles[2].url}}"><h3 class="desc">{{news.articles[2].title}}</h3></a>
           <h5 class="light grey-text text-lighten-3">{{news.articles[2].description}}</h5>
         </div>
       </li>
       <li>
         <img ng-src="{{news.articles[3].urlToImage}}">
         <div class="caption center-align">
-          <a ng-href="{{news.articles[3].url}}"><h3>{{news.articles[3].title}}</h3></a>
+          <a ng-href="{{news.articles[3].url}}"><h3 class="desc">{{news.articles[3].title}}</h3></a>
           <h5 class="light grey-text text-lighten-3">{{news.articles[3].description}}</h5>
         </div>
       </li>
       <li>
         <img ng-src="{{news.articles[4].urlToImage}}">
         <div class="caption center-align">
-          <a ng-href="{{news.articles[4].url}}"><h3>{{news.articles[4].title}}</h3></a>
+          <a ng-href="{{news.articles[4].url}}"><h3 class="desc">{{news.articles[4].title}}</h3></a>
           <h5 class="light grey-text text-lighten-3">{{news.articles[4].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[5].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[5].url}}"><h3 class="desc">{{news.articles[5].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[5].description}}</h5>
         </div>
       </li>
     </ul>
   </div>
-      
-    
-    <!-- <h4>News</h4>
-    <div ng-controller="NewsCtrl">
-      <div>
-        <img ng-src="{{news.articles[0].urlToImage}}">
-        <a ng-href="{{news.articles[0].url}}"><p>{{news.articles[0].title}}</p></a>
-        <p>{{news.articles[0].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[2].urlToImage}}">
-        <a ng-href="{{news.articles[2].url}}"><p>{{news.articles[2].title}}</p></a>
-        <p>{{news.articles[2].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[3].urlToImage}}">
-        <a ng-href="{{news.articles[3].url}}"><p>{{news.articles[3].title}}</p></a>
-        <p>{{news.articles[3].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[4].urlToImage}}">
-        <a ng-href="{{news.articles[4].url}}"><p>{{news.articles[4].title}}</p></a>
-        <p>{{news.articles[4].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[5].urlToImage}}">
-        <a ng-href="{{news.articles[5].url}}"><p>{{news.articles[5].title}}</p></a>
-        <p>{{news.articles[5].description}}</p>
-      </div>
-    </div> -->
-
-    <hr>
-
-    <div ng-controller="TimeCtrl">
-      <p>{{ clock  | date:'medium'}}</p>
-    </div>
-
-     <hr>
-
-    <form method=POST>
-      <input type="textarea" name="" placeholder="NOTES">
-      <input type="submit" name="" value="Save">
-    </form>
-  
-
-  </div>
+</div>
+<footer></footer>
 
 <script type="text/javascript">
 
 $(document).ready(function(){
       $('.slider').slider({full_width: true});
     });
-
-var dashioApp = angular.module("dashioApp", []);
- 
-dashioApp.config(function($httpProvider) {
-  //Enable cross domain calls
-  $httpProvider.defaults.useXDomain = true;
-  //Remove the header used to identify ajax call  that would prevent CORS from working
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
-
-dashioApp.controller("dashioCtrl", function(){
-  console.log("controller connected")
-
-});
-
-dashioApp.controller('QuoteCtrl', QuoteCtrl);
-dashioApp.controller('WeatherCtrl', WeatherCtrl)
-dashioApp.controller('TrafficCtrl', TrafficCtrl);
-dashioApp.controller('NewsCtrl', NewsCtrl);
-dashioApp.controller('TimeCtrl', TimeCtrl);
-
-
-
-  function QuoteCtrl ($scope, $http){
-    $http.get("http://quotes.rest/qod.json")
-          .success(function(response){
-              console.log(response.contents.quotes[0])
-              $scope.quote = response.contents.quotes[0];
-          });
-  };
-
-  
-  function WeatherCtrl ($scope, $http){
-    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&units=imperial&appid=3ad9bfcab1c3432e7973037740b23572")
-          .success(function(response){
-              console.log(response)
-              $scope.weather = response;
-          });
-  };
-
-
-  function TrafficCtrl ($scope, $http){
-    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAN5Gz5suaXSGUFnF5tOWGRrRKKR1Pq8xE", {headers: {Authorization: undefined}})
-          .success(function(response){
-              console.log(response)
-              $scope.duration = response
-          });
-  };
-
-  function NewsCtrl ($scope, $http){
-    $http.get("https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=ef4c0de3c37e4e9ca711527bd7646dca")
-          .success(function(response){
-              console.log(response)
-              $scope.news = response;
-          });
-  };
-
-  function TimeCtrl($scope, $timeout) {
-    $scope.clock = "loading clock..."; // initialise the time variable
-    $scope.tickInterval = 1000 //ms
-
-    var tick = function() {
-        $scope.clock = Date.now() // get the current time
-        $timeout(tick, $scope.tickInterval); // reset the timer
-    }
-    $timeout(tick, $scope.tickInterval);
-};
-
 </script>
 </body>
 </html>

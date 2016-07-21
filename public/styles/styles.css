@@ -1,3 +1,7 @@
+.caption{
+  background-color: rgba(57, 44, 62, 0.7)
+}
+
 .header{
   text-align: center;
 }
@@ -8,4 +12,29 @@
 
 .author{
 
+}
+
+.home{
+  text-align: center;
+}
+
+.weather{
+  position: relative;
+  left: 96%;
+    bottom: 16px;
+    width: 90%;
+}
+.traffic{
+  position: relative;
+    bottom: 321px;
+    width: 90%;
+    padding-bottom: 2%;
+}
+.newsHeader {
+  position: relative;
+    bottom: 314px;
+}
+#newsctrl {
+  position: relative;
+    top: 49px;
 }

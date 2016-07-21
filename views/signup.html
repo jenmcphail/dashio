@@ -4,6 +4,7 @@
     <title>Dashio - signup</title>
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </head>
@@ -14,10 +15,6 @@
 
     <h1>Signup</h1>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
 
     <!-- LOGIN FORM -->
     <form action="/signup" method="post">
