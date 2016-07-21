@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="dashioApp">
+<html>
 <head>
   <title>Dashio</title>
   <!-- Requires Angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <!-- Requires Controller -->
-  <script type="text/javascript" src="scripts/controller.js"></script>
+<!--   <script type="text/javascript" src="../../public/scripts/controller.js"></script> -->
+<script type="text/javascript" src="../hello.js"></script>
    <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <!-- Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <!-- Requires Satellizer -->
-  <script src="https://cdn.jsdelivr.net/satellizer/0.14.1/satellizer.min.js"></script>
 </head>
-<ng-include src="'/partials/navbar.html'"></ng-include>
-<body>
+<!-- <ng-include src="'/partials/navbar.html'"></ng-include> -->
+<body ng-app="dashioApp">
   <ul id="dropdown1" class="dropdown-content">
   <form>
     <input type="text" placeholder="email" name="email">
@@ -23,14 +23,14 @@
 </ul>
 
 
-<h2>Hello, Jen!</h2>
+<h2 class="header">Hello, Jen!</h2>
 
-  <div ng-controller="dashioCtrl">
+  <div ng-controller="dashioCtrl" class="container">
     <hr>
 
     <div ng-controller="QuoteCtrl">
-      <h5>"{{quote.quote}}Quote goes here"</h5>
-      <p>- Author {{quote.author}}</p>
+      <h5 class="quote">"{{quote.quote}}"</h5>
+      <p class="author">- {{quote.author}}</p>
     </div>
 
     <hr>
@@ -50,8 +50,42 @@
     </div>
 
     <hr>
-    
     <h4>News</h4>
+    <div ng-controller="NewsCtrl" class="slider">
+    <ul class="slides">
+      <li>
+        <img ng-src="{{news.articles[0].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[0].url}}"><h3>{{news.articles[0].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[0].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[2].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[2].url}}"><h3>{{news.articles[2].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[2].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[3].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[3].url}}"><h3>{{news.articles[3].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[3].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[4].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[4].url}}"><h3>{{news.articles[4].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[4].description}}</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+      
+    
+    <!-- <h4>News</h4>
     <div ng-controller="NewsCtrl">
       <div>
         <img ng-src="{{news.articles[0].urlToImage}}">
@@ -78,7 +112,7 @@
         <a ng-href="{{news.articles[5].url}}"><p>{{news.articles[5].title}}</p></a>
         <p>{{news.articles[5].description}}</p>
       </div>
-    </div>
+    </div> -->
 
     <hr>
 
@@ -96,10 +130,79 @@
 
   </div>
 
-  <script type="text/javascript">
-    $( document ).ready(function){
-      $(".dropdown-button").dropdown();
-    };
-  </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+      $('.slider').slider({full_width: true});
+    });
+
+var dashioApp = angular.module("dashioApp", []);
+ 
+dashioApp.config(function($httpProvider) {
+  //Enable cross domain calls
+  $httpProvider.defaults.useXDomain = true;
+  //Remove the header used to identify ajax call  that would prevent CORS from working
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
+
+dashioApp.controller("dashioCtrl", function(){
+  console.log("controller connected")
+
+});
+
+dashioApp.controller('QuoteCtrl', QuoteCtrl);
+dashioApp.controller('WeatherCtrl', WeatherCtrl)
+dashioApp.controller('TrafficCtrl', TrafficCtrl);
+dashioApp.controller('NewsCtrl', NewsCtrl);
+dashioApp.controller('TimeCtrl', TimeCtrl);
+
+
+
+  function QuoteCtrl ($scope, $http){
+    $http.get("http://quotes.rest/qod.json")
+          .success(function(response){
+              console.log(response.contents.quotes[0])
+              $scope.quote = response.contents.quotes[0];
+          });
+  };
+
+  
+  function WeatherCtrl ($scope, $http){
+    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&units=imperial&appid=3ad9bfcab1c3432e7973037740b23572")
+          .success(function(response){
+              console.log(response)
+              $scope.weather = response;
+          });
+  };
+
+
+  function TrafficCtrl ($scope, $http){
+    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAN5Gz5suaXSGUFnF5tOWGRrRKKR1Pq8xE", {headers: {Authorization: undefined}})
+          .success(function(response){
+              console.log(response)
+              $scope.duration = response
+          });
+  };
+
+  function NewsCtrl ($scope, $http){
+    $http.get("https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=ef4c0de3c37e4e9ca711527bd7646dca")
+          .success(function(response){
+              console.log(response)
+              $scope.news = response;
+          });
+  };
+
+  function TimeCtrl($scope, $timeout) {
+    $scope.clock = "loading clock..."; // initialise the time variable
+    $scope.tickInterval = 1000 //ms
+
+    var tick = function() {
+        $scope.clock = Date.now() // get the current time
+        $timeout(tick, $scope.tickInterval); // reset the timer
+    }
+    $timeout(tick, $scope.tickInterval);
+};
+
+</script>
 </body>
 </html>
