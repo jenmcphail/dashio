@@ -34,7 +34,41 @@
   position: relative;
     bottom: 314px;
 }
+
 #newsctrl {
   position: relative;
     top: 49px;
+}
+
+nav{
+  color: purple darken-4;
+}
+
+.weather{
+  text-align: center;
+  padding-top: 15px;
+}
+
+.traffic{
+  text-align: center;
+}
+
+.clocky{
+  text-align: center;
+  color:  green;
+}
+
+.title{
+  color: green;
+}
+
+.brand-logo{
+  margin-left: 25px;
+}
+
+.pistachio{
+  height: 50%;
+  width: 50px;
+  margin-left: 190px;
+  margin-top: 15px;
 }

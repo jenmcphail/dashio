@@ -11,12 +11,6 @@ dashioApp.config(function($httpProvider) {
 
 dashioApp.controller("dashioCtrl", function($scope){
   console.log("controller connected");
-  // if(!localStorage.firstName){
-  localStorage.setItem('firstName', user.firstName);
-  // }
-  $scope.firstName = localStorage.getItem('firstName');
-  console.log($scope.firstName);
-
 });
 
 // dashioApp.controller('QuoteCtrl', QuoteCtrl);
