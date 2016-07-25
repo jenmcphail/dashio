@@ -1,7 +1,5 @@
 var dashioApp = angular.module("dashioApp", []);
 
-
- 
 dashioApp.config(function($httpProvider) {
   //Enable cross domain calls
   $httpProvider.defaults.useXDomain = true;
@@ -13,7 +11,7 @@ dashioApp.controller("dashioCtrl", function($scope){
   console.log("controller connected");
 });
 
-// dashioApp.controller('QuoteCtrl', QuoteCtrl);
+dashioApp.controller('QuoteCtrl', QuoteCtrl);
 dashioApp.controller('WeatherCtrl', WeatherCtrl)
 dashioApp.controller('TrafficCtrl', TrafficCtrl);
 dashioApp.controller('NewsCtrl', NewsCtrl);
