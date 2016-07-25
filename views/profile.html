@@ -1,105 +1,136 @@
 <!DOCTYPE html>
-<html ng-app="dashioApp">
+<html>
 <head>
   <title>Dashio</title>
   <!-- Requires Angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <!-- Requires Controller -->
   <script type="text/javascript" src="scripts/controller.js"></script>
-   <!-- Materialize CSS -->
+   <!-- CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://use.fontawesome.com/9a3b7c80b7.js"></script>
   <!-- Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <!-- Requires Satellizer -->
-  <script src="https://cdn.jsdelivr.net/satellizer/0.14.1/satellizer.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
-<ng-include src="'/partials/navbar.html'"></ng-include>
-<body>
-  <ul id="dropdown1" class="dropdown-content">
-  <form>
-    <input type="text" placeholder="email" name="email">
-    <input type="text" placeholder="password" name="password">
-  </form>
-</ul>
-
-
-<h2>Hello, Jen!</h2>
-
-  <div ng-controller="dashioCtrl">
-    <hr>
-
-    <div ng-controller="QuoteCtrl">
-      <h5>"{{quote.quote}}Quote goes here"</h5>
-      <p>- Author {{quote.author}}</p>
+<body ng-app="dashioApp">
+<nav class="green darken-3">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">pisDASH.io</a> <img class="pistachio" src="http://vignette2.wikia.nocookie.net/plantsvszombies/images/5/5f/Pistachio_hq.png/revision/latest?cb=20140729161235">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/logout" class="waves-effect waves-light btn green">Logout</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <hr>
+<div class="container" ng-controller="dashioCtrl">
+<h2 class="header">Hello, Jen !</h2>
 
-    <div ng-controller="TrafficCtrl">
-      <p>Distance from <b>{{duration.destination_addresses[0]}}</b> to <b>{{duration.origin_addresses[0]}}</b>:
-      <p><h5>{{duration.rows[0].elements[0].duration.text}}</h5></p>
-    </div>
+<hr>
 
-    <hr>
-
-     <div ng-controller="WeatherCtrl">
-      <h4>Weather for {{weather.name}}:</h4>
-      <p>{{weather.weather[0].icon}}</p>
-      <p>{{weather.main.temp}} degrees F</p>
-      <p>{{weather.weather[0].description}}</p>
-    </div>
-
-    <hr>
-    
-    <h4>News</h4>
-    <div ng-controller="NewsCtrl">
-      <div>
-        <img ng-src="{{news.articles[0].urlToImage}}">
-        <a ng-href="{{news.articles[0].url}}"><p>{{news.articles[0].title}}</p></a>
-        <p>{{news.articles[0].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[2].urlToImage}}">
-        <a ng-href="{{news.articles[2].url}}"><p>{{news.articles[2].title}}</p></a>
-        <p>{{news.articles[2].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[3].urlToImage}}">
-        <a ng-href="{{news.articles[3].url}}"><p>{{news.articles[3].title}}</p></a>
-        <p>{{news.articles[3].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[4].urlToImage}}">
-        <a ng-href="{{news.articles[4].url}}"><p>{{news.articles[4].title}}</p></a>
-        <p>{{news.articles[4].description}}</p>
-      </div>
-      <div>
-        <img ng-src="{{news.articles[5].urlToImage}}">
-        <a ng-href="{{news.articles[5].url}}"><p>{{news.articles[5].title}}</p></a>
-        <p>{{news.articles[5].description}}</p>
-      </div>
-    </div>
-
-    <hr>
-
-    <div ng-controller="TimeCtrl">
-      <p>{{ clock  | date:'medium'}}</p>
-    </div>
-
-     <hr>
-
-    <form method=POST>
-      <input type="textarea" name="" placeholder="NOTES">
-      <input type="submit" name="" value="Save">
-    </form>
-  
-
+  <div class="clocky" ng-controller="TimeCtrl">
+    <h3 class="clock">{{ clock  | date:'medium'}}</h3>
   </div>
 
-  <script type="text/javascript">
-    $( document ).ready(function){
-      $(".dropdown-button").dropdown();
-    };
-  </script>
+  <div>
+    <hr>
+
+<!--     <div ng-controller="QuoteCtrl">
+      <h5 class="quote">"{{quote.quote}}"</h5>
+      <p class="author">- {{quote.author}}</p>
+    </div> -->
+
+    <div>
+    <h4>Style the Quote</h4>
+    <h6 class="green-text text-lighten-2">Style the Author</h6>
+    </div>
+
+    <hr>
+    <br>
+
+    <div class="row">
+        <div class="col l6 s12">
+          <div class="card weather">
+            <div class="card-image">
+              <i class="fa fa-sun-o fa-5x" aria-hidden="true"></i>
+            </div>
+            <div ng-controller="WeatherCtrl" class="card-content">
+              <h4 class="title">Weather</h4>
+              <p>{{weather.name}}</p>
+              <p>{{weather.main.temp}} degrees F</p>
+              <p>{{weather.weather[0].description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="card traffic">
+            <div class="card-image">
+              <i class="fa fa-car fa-5x" aria-hidden="true"></i>
+            </div>
+            <div ng-controller="TrafficCtrl" class="card-content">
+              <h4 class="title">Traffic</h4>
+              <p>From <b>{{duration.destination_addresses[0]}}</b> to <b>{{duration.origin_addresses[0]}}</b>:
+              <p><h5>{{duration.rows[0].elements[0].duration.text}}</h5></p>
+            </div>
+          </div>
+      </div>
+    <div class="col l12 s12 newsHeader">
+    <hr>
+
+    <h4 class="title">News</h4>
+    </div>
+    <div ng-controller="NewsCtrl" class="slider" id="newsctrl">
+    <ul class="slides">
+      <li>
+        <img ng-src="{{news.articles[0].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[0].url}}"><h3 class="desc">{{news.articles[0].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[0].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[2].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[2].url}}"><h3 class="desc">{{news.articles[2].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[2].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[3].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[3].url}}"><h3 class="desc">{{news.articles[3].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[3].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[4].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[4].url}}"><h3 class="desc">{{news.articles[4].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[4].description}}</h5>
+        </div>
+      </li>
+      <li>
+        <img ng-src="{{news.articles[5].urlToImage}}">
+        <div class="caption center-align">
+          <a ng-href="{{news.articles[5].url}}"><h3 class="desc">{{news.articles[5].title}}</h3></a>
+          <h5 class="light grey-text text-lighten-3">{{news.articles[5].description}}</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<footer></footer>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+      $('.slider').slider({full_width: true});
+    });
+</script>
 </body>
 </html>

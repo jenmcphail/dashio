@@ -1,5 +1,6 @@
 // requires dependencies
 var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -10,20 +11,17 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 // creates new express app
-var app = express();
+var configDB = require('./config/database.js');
+// configures and connects to db
+mongoose.connect(configDB.url);
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.urlencoded({extended:true})); // get information from html forms
 
-app.use('/static', express.static('./public'));
-
-
-// configures and connects to db
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+app.use(express.static('./public'));
 
 // required for passport
-// require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persists login sessions
