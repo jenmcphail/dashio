@@ -21,17 +21,17 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
 
-  // function QuoteCtrl ($scope, $http){
-  //   $http.get("http://quotes.rest/qod.json")
-  //         .success(function(response){
-  //             console.log(response.contents.quotes[0])
-  //             $scope.quote = response.contents.quotes[0];
-  //         });
-  // };
+  function QuoteCtrl ($scope, $http){
+    $http.get("http://quotes.rest/qod.json")
+          .success(function(response){
+              console.log(response.contents.quotes[0])
+              $scope.quote = response.contents.quotes[0];
+          });
+  };
 
   
   function WeatherCtrl ($scope, $http){
-    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&units=imperial&appid=3ad9bfcab1c3432e7973037740b23572")
+    $http.get("http://api.openweathermap.org/data/2.5/weather?zip=94121,us&units=imperial&appid=3a7c29a57837358d3a81e6c47aeb87b5")
           .success(function(response){
               console.log(response)
               $scope.weather = response;
@@ -40,7 +40,7 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
   function TrafficCtrl ($scope, $http){
-    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAN5Gz5suaXSGUFnF5tOWGRrRKKR1Pq8xE", {headers: {Authorization: undefined}})
+    $http.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDQQabPqlDkpPglb4zj4DF3YW-BRGrblS4", {headers: {Authorization: undefined}})
           .success(function(response){
               console.log(response)
               $scope.duration = response
