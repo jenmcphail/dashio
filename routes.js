@@ -73,3 +73,17 @@ function isLoggedIn(req, res, next) {
         res.redirect('/');
     });
 };
+
+// var Component = require('./models/user.js');
+ 
+// module.exports = function (app) {
+//   app.get('/api/users', function (req, res) {
+//     User.find(function (err, components) {
+//       if (err)
+//         res.send(err);
+ 
+//       res.json(users);
+//     });
+//   });
+// };
+

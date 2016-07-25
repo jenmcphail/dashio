@@ -1,7 +1,5 @@
 var dashioApp = angular.module("dashioApp", []);
 
-
- 
 dashioApp.config(function($httpProvider) {
   //Enable cross domain calls
   $httpProvider.defaults.useXDomain = true;
@@ -13,7 +11,7 @@ dashioApp.controller("dashioCtrl", function($scope){
   console.log("controller connected");
 });
 
-// dashioApp.controller('QuoteCtrl', QuoteCtrl);
+dashioApp.controller('QuoteCtrl', QuoteCtrl);
 dashioApp.controller('WeatherCtrl', WeatherCtrl)
 dashioApp.controller('TrafficCtrl', TrafficCtrl);
 dashioApp.controller('NewsCtrl', NewsCtrl);
@@ -21,13 +19,13 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
 
-  // function QuoteCtrl ($scope, $http){
-  //   $http.get("http://quotes.rest/qod.json")
-  //         .success(function(response){
-  //             console.log(response.contents.quotes[0])
-  //             $scope.quote = response.contents.quotes[0];
-  //         });
-  // };
+  function QuoteCtrl ($scope, $http){
+    $http.get("http://quotes.rest/qod.json")
+          .success(function(response){
+              console.log(response.contents.quotes[0])
+              $scope.quote = response.contents.quotes[0];
+          });
+  };
 
   
   function WeatherCtrl ($scope, $http){
