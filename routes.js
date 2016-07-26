@@ -73,3 +73,17 @@ function isLoggedIn(req, res, next) {
         res.redirect('/');
     });
 };
+
+
+var User = require('./models/user.js');
+ 
+module.exports = function (app) {
+  app.get('/api/users/:id', function (req, res) {
+    User.find(function (err, users) {
+      if (err)
+        res.send(err);
+ 
+      res.json(users);
+    });
+  });
+};
