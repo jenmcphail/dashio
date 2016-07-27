@@ -1,4 +1,7 @@
+var User = require('./models/user.js');
+
 module.exports = function(app, passport) {
+
 
 
 // ***Logic to ensure user is logged in***
@@ -22,15 +25,8 @@ function isLoggedIn(req, res, next) {
         res.sendFile( __dirname + '/views/login.html', { req: req.user })
     });
 
-// ***Posts to login route (lets the user log in)***
-    // app.post('/login', function(req, res, next) {
-    //     passport.authenticate('local-login', function(err, user) {
-    //         if (err) { return next(err); }
-    //         console.log("logging in")
-    //         res.redirect("/profile");
-    //     })(req, res, next);
-    // });
 
+// ***Posts to log in route (logs user in) ***
     app.post('/login', passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login',
@@ -47,23 +43,15 @@ function isLoggedIn(req, res, next) {
         successRedirect : '/profile', 
         failureRedirect : '/signup',
         failureFlash : true 
-    }, function(err, user) {
-        console.log(" err ", err, " user ", user);
-        if(err){
-            console.log('there was an error: ', err); // returns null
-        } else if (user === false) {
-            console.log("User already exists. Please try another email");
-        } else {
-            res.redirect('/profile' + req.user);
-        }
-    }));
+    }), function(req, res) {
+            console.log('user', req.user)
+            res.redirect('/profile', req.user);
+
+    });
 
 // ***Gets the profile page only if user is logged in***
     app.get('/profile', isLoggedIn, function(req, res) {
         console.log("at profile");
-        // res.sendFile('profile.html', { root: __dirname + '/views'}, {
-        //     user : req.user // get the user out of session and pass to template
-        // });
         res.sendFile( __dirname + '/views/profile.html', { user : req.user });
     });
 
@@ -72,18 +60,17 @@ function isLoggedIn(req, res, next) {
         req.logout();
         res.redirect('/');
     });
-};
 
-// var Component = require('./models/user.js');
+
+
+// ***Gets Users API ***
+  app.get('/api/users', function (req, res) {
+    User.find(function (err, users) {
+      if (err)
+        res.send(err);
  
-// module.exports = function (app) {
-//   app.get('/api/users', function (req, res) {
-//     User.find(function (err, components) {
-//       if (err)
-//         res.send(err);
- 
-//       res.json(users);
-//     });
-//   });
-// };
+      res.json(users);
+    });
+  });
+};
 

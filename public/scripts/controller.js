@@ -11,6 +11,7 @@ dashioApp.controller("dashioCtrl", function($scope){
   console.log("controller connected");
 });
 
+dashioApp.controller('UserCtrl', UserCtrl);
 dashioApp.controller('QuoteCtrl', QuoteCtrl);
 dashioApp.controller('WeatherCtrl', WeatherCtrl)
 dashioApp.controller('TrafficCtrl', TrafficCtrl);
@@ -19,6 +20,14 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
 
+  function UserCtrl ($scope, $http){
+    $http.get("api/users")
+      .success(function(response){
+              console.log(response)
+              // $scope.quote = response.contents.quotes[0];
+          });
+  };
+  
   function QuoteCtrl ($scope, $http){
     $http.get("http://quotes.rest/qod.json")
           .success(function(response){
