@@ -31,5 +31,5 @@ app.use(flash()); // enables flash messages
 require('./routes.js')(app, passport);
 
 app.listen(process.env.PORT || 3000, function(){
-  console.log("server running on port " + (process.env.PORT ||3000);
+  console.log("server running on port " + (process.env.PORT ||3000));
 });
