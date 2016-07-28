@@ -15,13 +15,11 @@ function isLoggedIn(req, res, next) {
 
 // ***Gets Home Page***
     app.get('/', function(req, res) {
-        console.log("we're home")
         res.sendFile( __dirname + '/views/index.html', { req: req.user });
     });
 
 // ***Gets log in form***
     app.get('/login', function(req, res) {
-        console.log("login page")
         res.sendFile( __dirname + '/views/login.html', { req: req.user })
     });
 
@@ -44,13 +42,13 @@ function isLoggedIn(req, res, next) {
         failureRedirect : '/signup',
         failureFlash : true 
     }), function(req, res) {
-            console.log('user', req.user)
             res.redirect('/profile', req.user);
 
     });
 
 // ***Gets the profile page only if user is logged in***
     app.get('/profile', isLoggedIn, function(req, res) {
+        console.log('user', req.user._id);
         console.log("at profile");
         res.sendFile( __dirname + '/views/profile.html', { user : req.user });
     });

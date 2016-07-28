@@ -24,10 +24,9 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
     $http.get("api/users")
       .success(function(response){
               console.log(response)
-              // $scope.quote = response.contents.quotes[0];
           });
   };
-  
+
   function QuoteCtrl ($scope, $http){
     $http.get("http://quotes.rest/qod.json")
           .success(function(response){
