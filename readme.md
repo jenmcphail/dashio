@@ -2,7 +2,7 @@ Pisdashio is a personal dashboard where users can sign up for account . app that
 
 ##Technologies Used
 
-The Final Coutdown was built using:
+Pisdashio was built using:
 
 * MEAN stack
 * Materialize
