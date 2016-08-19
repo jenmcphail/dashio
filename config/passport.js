@@ -33,6 +33,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
         // asynchronous
         // User.findOne wont fire unless data is sent back
+        // console.log(req.body); USE REQ.BODY
         process.nextTick(function() {
 
         // find a user whose email is the same as the forms email
@@ -53,6 +54,7 @@ module.exports = function(passport) {
                 // set the user's local credentials
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
+                newUser.local.firstName = req.body.firstName;
 
                 // save the user
                 newUser.save(function(err) {
