@@ -55,6 +55,14 @@ module.exports = function(passport) {
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
                 newUser.local.firstName = req.body.firstName;
+                newUser.local.workAddress = req.body.workAddress;
+                newUser.local.workCity = req.body.workCity;
+                newUser.local.workState = req.body.workState;
+                newUser.local.workZip = req.body.workZip;
+                newUser.local.homeAddress = req.body.homeAddress;
+                newUser.local.homeCity = req.body.homeCity;
+                newUser.local.homeState = req.body.homeState;
+                newUser.local.homeZip = req.body.homeZip;
 
                 // save the user
                 newUser.save(function(err) {
