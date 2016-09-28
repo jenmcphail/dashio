@@ -21,12 +21,9 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
   function UserCtrl ($scope, $http){
-    $http.get("api/users")
-      .success(function(response){
-        console.log(response);
-              $scope.user = response[6].local;
-              // not saving anything other than email and password. how do i make it show the whole user?
-          });
+    // $http.get("api/users")
+    //   .success(function(response){
+    //       });
   };
 
   function QuoteCtrl ($scope, $http){
@@ -73,10 +70,6 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
     }
     $timeout(tick, $scope.tickInterval);
 };
-
-// function setFirstName(){
-//   localStorage.set index of User.length
-// }
 
   
 

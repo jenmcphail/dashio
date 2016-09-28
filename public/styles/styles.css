@@ -1,3 +1,10 @@
+.main{
+  background-image: url("https://hd.unsplash.com/photo-1462569774800-8104213dedba");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 15%;
+}
+
 .caption{
   background-color: rgba(57, 44, 62, 0.7)
 }
@@ -7,11 +14,12 @@
 }
 
 .quote{
-  text-decoration-style: italic;
+  font-style: italic;
+  color: #fafafa;
 }
 
 .author{
-
+  color: #fafafa;
 }
 
 .home{
@@ -19,34 +27,7 @@
 }
 
 .weather{
-  position: relative;
-  left: 96%;
-    bottom: 16px;
-    width: 90%;
-}
-.traffic{
-  position: relative;
-    bottom: 321px;
-    width: 90%;
-    padding-bottom: 2%;
-}
-.newsHeader {
-  position: relative;
-    bottom: 314px;
-}
-
-#newsctrl {
-  position: relative;
-    top: 49px;
-}
-
-nav{
-  color: purple darken-4;
-}
-
-.weather{
   text-align: center;
-  padding-top: 15px;
 }
 
 .traffic{
@@ -55,20 +36,10 @@ nav{
 
 .clocky{
   text-align: center;
-  color:  green;
+  color: #fafafa;
 }
 
-.title{
-  color: green;
-}
-
-.brand-logo{
-  margin-left: 25px;
-}
-
-.pistachio{
-  height: 50%;
-  width: 50px;
-  margin-left: 190px;
-  margin-top: 15px;
+.newsTitle{
+  color: #fafafa;
+  text-align: center;
 }

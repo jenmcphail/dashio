@@ -7,20 +7,20 @@
   <!-- Requires Controller -->
   <script type="text/javascript" src="scripts/controller.js"></script>
    <!-- CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://use.fontawesome.com/9a3b7c80b7.js"></script>
-  <!-- Materialize JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </head>
-<body ng-app="dashioApp">
-<nav class="green darken-3">
+
+<body class ="main" ng-app="dashioApp">
+<nav class="grey darken-3">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">pisDASH.io</a> <img class="pistachio" src="http://vignette2.wikia.nocookie.net/plantsvszombies/images/5/5f/Pistachio_hq.png/revision/latest?cb=20140729161235">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/logout" class="waves-effect waves-light btn green">Logout</a></li>
+      <a href="/" class="brand-logo">Dashio</a>
+      <ul class="right">
+        <li><a href="/logout" class="waves-effect waves-light btn grey darken-1">Logout</a></li>
       </ul>
     </div>
   </nav>
@@ -28,7 +28,10 @@
 <div ng-controller="dashioCtrl">
 
 <div class="container" ng-controller="UserCtrl">
-<h2 class="header">Hello, {{user.firstName}}!</h2>
+<h5 class="header">Hello, 
+<!-- {{user.firstName}} --> <!-- to fix user bug w/ local storage -->
+Jen!
+</h5>
 
 <hr>
 
@@ -61,9 +64,8 @@
             </div>
           </div>
         </div>
-      </div>
+      
 
-      <div class="row">
         <div class="col l6 s12">
           <div class="card traffic">
             <div class="card-image">
@@ -76,11 +78,15 @@
             </div>
           </div>
       </div>
+    </div>
+
+    <div class = "row">
     <div class="col l12 s12 newsHeader">
     <hr>
-
-    <h4 class="title">News</h4>
+    <h4 class="newsTitle">News</h4>
     </div>
+    </div>
+    <div class="row">
     <div ng-controller="NewsCtrl" class="slider" id="newsctrl">
     <ul class="slides">
       <li>
@@ -120,6 +126,7 @@
       </li>
     </ul>
   </div>
+</div>
 </div>
 </div>
 
