@@ -21,11 +21,9 @@ dashioApp.controller('TimeCtrl', TimeCtrl);
 
 
   function UserCtrl ($scope, $http){
-    $http.get("api/users")
-      .success(function(response){
-        console.log(response);
-              $scope.user = response[6].local;
-          });
+    // $http.get("api/users")
+    //   .success(function(response){
+    //       });
   };
 
   function QuoteCtrl ($scope, $http){
